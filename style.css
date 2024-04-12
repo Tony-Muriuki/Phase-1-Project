@@ -1,10 +1,10 @@
-h1 {
+h2 {
     font-size: 36px;
     font-weight: bold;
     color: #ee1c1c;
     text-align: center;
     text-transform: uppercase;
-    margin: 20px 0;
+    margin: 5px 0;
 }
 
 * {
@@ -97,6 +97,7 @@ body {
     margin-top: 80px;
     text-align: center;
 }
+
 .dark-mode {
     background-color: #333;
     color: #fff;

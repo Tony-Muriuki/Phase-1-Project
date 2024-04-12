@@ -4,10 +4,14 @@ const sound = document.getElementById("sound");
 const btn = document.getElementById("search-btn");
 const modeBtn = document.getElementById("mode-btn");
 const body = document.body;
+const commentsList = document.getElementById("comments-list");
+const commentInput = document.getElementById("comment-input");
+const postCommentBtn = document.getElementById("post-comment-btn");
 
 btn.addEventListener("click", searchWord);
 document.addEventListener("keydown", handleKeyDown);
 modeBtn.addEventListener("click", toggleMode);
+postCommentBtn.addEventListener("click", postComment);
 
 function searchWord() {
     let inpWord = document.getElementById("inp-word").value;
@@ -47,4 +51,20 @@ function handleKeyDown(event) {
 
 function toggleMode() {
     body.classList.toggle("dark-mode");
+}
+
+function postComment() {
+    const commentText = commentInput.value.trim();
+    if (commentText !== "") {
+        const commentItem = document.createElement("li");
+        commentItem.innerText = commentText;
+        const deleteBtn = document.createElement("button");
+        deleteBtn.innerText = "Delete";
+        deleteBtn.addEventListener("click", () => {
+            commentItem.remove();
+        });
+        commentItem.appendChild(deleteBtn);
+        commentsList.appendChild(commentItem);
+        commentInput.value = "";
+    }
 }
