@@ -2,8 +2,14 @@ const url = "https://api.dictionaryapi.dev/api/v2/entries/en/";
 const result = document.getElementById("result");
 const sound = document.getElementById("sound");
 const btn = document.getElementById("search-btn");
+const modeBtn = document.getElementById("mode-btn");
+const body = document.body;
 
-btn.addEventListener("click", () => {
+btn.addEventListener("click", searchWord);
+document.addEventListener("keydown", handleKeyDown);
+modeBtn.addEventListener("click", toggleMode);
+
+function searchWord() {
     let inpWord = document.getElementById("inp-word").value;
     fetch(`${url}${inpWord}`)
     .then((response) => response.json())
@@ -27,8 +33,18 @@ btn.addEventListener("click", () => {
     .catch(() => {
         result.innerHTML = `<h3 class="error">Could not find the word</h3>`;
     });
-});
+}
 
 function playSound() {
     sound.play();
+}
+
+function handleKeyDown(event) {
+    if (event.key === "Enter") {
+        searchWord();
+    }
+}
+
+function toggleMode() {
+    body.classList.toggle("dark-mode");
 }
